@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from '../styled/Button';
 
 
 
@@ -32,21 +33,4 @@ const Conatainer = styled.div`
         white-space: nowrap;
       }
     }
-`;
-const Button = styled.button`
-   padding: 10px 18px;
-   color: white;
-   background: black ;
-   border-radius: 5px;
-   min-width: 220px;
-   border: none;
-   font-size: 16px;
-   transition: 0.3s ease-in;
-   cursor: pointer;
-   border: 1px solid transparent;
-   &:hover{
-    background-color: #ffffff;
-    border: 1px solid black;
-    color: black;
-   }
 `;

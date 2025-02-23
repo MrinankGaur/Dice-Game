@@ -3,12 +3,15 @@ import TotalScore from './TotalScore'
 import NumberSelector from './NumberSelector'
 import styled from 'styled-components'
 import RoleDice from './RoleDice'
+import { Button, OutlineButton } from '../styled/Button'
+import Rules from './Rules'
 
 const Gameplay = () => {
   const [score,setScore] = useState(0);
   const[selectedNumber,setSelectedNumber] = useState();
   const[currentDice,setCurrentDice]= useState(1);
   const [error,setError] = useState("");
+  const[showRules,setShowRules] = useState(false);
   
   const generateRandomNumber = (min,max)=>{
     return Math.floor(Math.random()*(max-min)+min);
@@ -31,6 +34,9 @@ const Gameplay = () => {
 
     setSelectedNumber(undefined);
   }
+  const resetScore = ()=>{
+    setScore(0);
+  }
 
   return (
     <MainContainer>
@@ -38,7 +44,13 @@ const Gameplay = () => {
         <TotalScore score={score}/>
         <NumberSelector setError={setError} selectedNumber={selectedNumber} setSelectedNumber={setSelectedNumber} error={error}/>
         </div>
-        <RoleDice currentDice={currentDice} rollDice={rollDice}/>  
+        <RoleDice currentDice={currentDice} rollDice={rollDice}/>
+        <div className='btns'>
+           <OutlineButton onClick={resetScore}>Reset</OutlineButton>
+           <Button
+           onClick={()=>setShowRules((prev)=>!prev)}>{showRules?"Hide":"Show"}Show Rules</Button> 
+        </div>
+        {showRules&&<Rules/>}
     </MainContainer>
   )
 }
@@ -50,5 +62,13 @@ const MainContainer = styled.main`
         display: flex;
         justify-content: space-around;
         align-items: end;
+    }
+    .btns{
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+      align-items: center;
     }
 `
